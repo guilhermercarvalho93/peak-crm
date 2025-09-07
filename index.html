@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Peak CRM</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <img src="logo_peak.png" alt="Peak CRM" class="logo">
+    <button id="addCardBtn">+ Novo Cliente</button>
+  </header>
+
+  <main class="kanban">
+    <div class="column" data-status="novo">
+      <h2>Cliente Novo</h2>
+      <div class="cards" id="novo"></div>
+    </div>
+    <div class="column" data-status="onboarding">
+      <h2>Onboarding</h2>
+      <div class="cards" id="onboarding"></div>
+    </div>
+    <div class="column" data-status="ativacao">
+      <h2>Ativação</h2>
+      <div class="cards" id="ativacao"></div>
+    </div>
+    <div class="column" data-status="churn">
+      <h2>Churn</h2>
+      <div class="cards" id="churn"></div>
+    </div>
+  </main>
+
+  <!-- Modal de edição -->
+  <div id="modal" class="modal hidden">
+    <div class="modal-content">
+      <span id="closeModal">&times;</span>
+      <h3>Editar Cliente</h3>
+      <form id="cardForm">
+        <input type="text" id="nome" placeholder="Nome" required>
+        <input type="text" id="cnpj" placeholder="CNPJ">
+        <input type="text" id="ticket" placeholder="Ticket">
+        <input type="text" id="cidade" placeholder="Cidade">
+        <input type="text" id="telefone" placeholder="Telefone">
+        <div class="modal-buttons">
+          <button type="submit">Salvar</button>
+          <button type="button" id="deleteCard">Excluir</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
