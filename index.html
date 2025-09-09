@@ -1,56 +1,102 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Peak CRM</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CRM Kanban</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
-<body>
-  <header>
-    <img src="logo_peak.png" alt="Peak CRM" class="logo">
-    <button id="addCardBtn">+ Novo Cliente</button>
-  </header>
-
-  <main class="kanban">
-    <div class="column" data-status="novo">
-      <h2>Cliente Novo</h2>
-      <div class="cards" id="novo"></div>
-    </div>
-    <div class="column" data-status="onboarding">
-      <h2>Onboarding</h2>
-      <div class="cards" id="onboarding"></div>
-    </div>
-    <div class="column" data-status="ativacao">
-      <h2>Ativação</h2>
-      <div class="cards" id="ativacao"></div>
-    </div>
-    <div class="column" data-status="churn">
-      <h2>Churn</h2>
-      <div class="cards" id="churn"></div>
-    </div>
-  </main>
-
-  <!-- Modal de edição -->
-  <div id="modal" class="modal hidden">
-    <div class="modal-content">
-      <span id="closeModal">&times;</span>
-      <h3>Editar Cliente</h3>
-      <form id="cardForm">
-        <input type="text" id="nome" placeholder="Nome" required>
-        <input type="text" id="cnpj" placeholder="CNPJ">
-        <input type="text" id="ticket" placeholder="Ticket">
-        <input type="text" id="cidade" placeholder="Cidade">
-        <input type="text" id="telefone" placeholder="Telefone">
-        <div class="modal-buttons">
-          <button type="submit">Salvar</button>
-          <button type="button" id="deleteCard">Excluir</button>
+<body class="login-bg">
+  <div id="auth" class="auth">
+    <div class="auth-card">
+      <img src="logo_peak1.png" class="logo-big" alt="Logo Peak" />
+      
+      <form id="loginForm" class="auth-form">
+        <h2>Entrar</h2>
+        <input id="loginEmail" type="email" placeholder="E-mail" required />
+        <input id="loginPass" type="password" placeholder="Senha" required />
+        <button type="submit">Entrar</button>
+        <div class="auth-links">
+          <a href="#" id="showRegister">Criar conta</a>
+          <a href="#" id="showForgot">Esqueceu?</a>
         </div>
+        <div id="authMsg" class="auth-msg"></div>
+      </form>
+
+      <form id="registerForm" class="auth-form hidden">
+        <h2>Criar conta</h2>
+        <input id="regName" type="text" placeholder="Nome" required />
+        <input id="regEmail" type="email" placeholder="E-mail" required />
+        <input id="regPass" type="password" placeholder="Senha" required />
+        <button type="submit">Cadastrar</button>
+        <div class="auth-links">
+          <a href="#" id="showLoginFromReg">Entrar</a>
+        </div>
+        <div id="authMsg" class="auth-msg"></div>
+      </form>
+
+      <form id="forgotForm" class="auth-form hidden">
+        <h2>Redefinir senha</h2>
+        <input id="forgotEmail" type="email" placeholder="E-mail" required />
+        <input id="forgotNewPass" type="password" placeholder="Nova senha" required />
+        <button type="submit">Redefinir</button>
+        <div class="auth-links">
+          <a href="#" id="showLoginFromForgot">Entrar</a>
+        </div>
+        <div id="authMsg" class="auth-msg"></div>
       </form>
     </div>
   </div>
 
+  <header id="appHeader" class="hidden">
+    <img src="logo_peak2.png" class="logo" alt="Logo Peak" />
+    <div class="userbar">
+      <span id="userWelcome"></span>
+      <button id="logoutBtn" class="btn-outline">Sair</button>
+    </div>
+  </header>
+
+  <div id="app" class="hidden">
+    <div class="kanban">
+      <div class="column" data-status="cliente-novo">
+        <h2>Cliente Novo</h2>
+        <div class="cards"></div>
+      </div>
+      <div class="column" data-status="onboarding">
+        <h2>Onboarding</h2>
+        <div class="cards"></div>
+      </div>
+      <div class="column" data-status="ativacao">
+        <h2>Ativação</h2>
+        <div class="cards"></div>
+      </div>
+      <div class="column" data-status="churn">
+        <h2>Churn</h2>
+        <div class="cards"></div>
+      </div>
+    </div>
+
+    <button id="addCardBtn" class="fab">+</button>
+
+    <div id="modal" class="modal hidden">
+      <div class="modal-content">
+        <span id="closeModal">&times;</span>
+        <h3 id="modalTitle">Novo Cliente</h3>
+        <form id="cardForm">
+          <input id="nome" type="text" placeholder="Nome do Cliente" required />
+          <input id="cnpj" type="text" placeholder="CNPJ" />
+          <input id="ticket" type="text" placeholder="Ticket (valor)" />
+          <input id="cidade" type="text" placeholder="Cidade" />
+          <input id="telefone" type="text" placeholder="Telefone" />
+          <div class="modal-buttons">
+            <button type="submit">Salvar</button>
+            <button type="button" class="btn-danger" id="deleteCard">Excluir</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  
   <script src="script.js"></script>
 </body>
 </html>
-

@@ -1,15 +1,39 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
 
+:root {
+  --black: #000000;
+  --orange: #FF6600;
+  --gray-light: #c2c2c2;
+  --card: #ffffff;
+  --muted: #6b7280;
+}
+
+/* Fundo gradiente para tela de login */
+body.login-bg {
+  min-height: 100vh;
+  background: radial-gradient(circle at center, var(--gray-light) 0%, var(--black) 100%);
+}
+
+/* Fundo cinza para app ao estar logado */
+body.app-bg {
+  min-height: 100vh;
+  background: var(--gray-light);
+}
+
+/* Estilos gerais */
+* {
+  box-sizing: border-box;
+}
+
 body {
   font-family: 'Inter', sans-serif;
   margin: 0;
-  background: #f9fafb;
   color: #333;
 }
 
-/* Header */
+/* Header logado */
 header {
-  background: #000;
+  background: var(--black);
   color: #fff;
   padding: 1rem 2rem;
   display: flex;
@@ -24,19 +48,114 @@ header {
   object-fit: contain;
 }
 
-button {
-  background: linear-gradient(135deg, #FF6600, #ff8533);
-  color: white;
+.userbar {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+}
+
+.userbar #userWelcome {
+  color: #fff;
+  font-weight: 600;
+}
+
+.btn-outline {
+  background: transparent;
+  color: #fff;
+  border: 1px solid #fff;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.btn-outline:hover {
+  background: #111;
+}
+
+/* Autenticação */
+.auth {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 420px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 12px 28px rgba(0,0,0,.12);
+  padding: 2rem 1.5rem;
+  text-align: center;
+}
+
+.logo-big {
+  height: 64px;
+  margin-bottom: 1rem;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: .6rem;
+}
+
+.auth-form h2 {
+  margin: .5rem 0 .5rem;
+  color: var(--orange);
+}
+
+.auth-form input {
+  padding: 10px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+}
+
+.auth-form button {
+  background: linear-gradient(135deg, var(--orange), #ff8533);
+  color: #fff;
   border: none;
   padding: 10px 16px;
-  cursor: pointer;
   border-radius: 8px;
   font-weight: 600;
-  transition: all 0.2s;
+  cursor: pointer;
+  transition: transform .15s;
 }
-button:hover { transform: scale(1.05); }
+
+.auth-form button:hover {
+  transform: scale(1.03);
+}
+
+.auth-links {
+  display: flex;
+  justify-content: space-between;
+  margin-top: .25rem;
+}
+
+.auth-links a {
+  font-size: .9rem;
+  color: var(--black);
+  text-decoration: none;
+}
+
+.auth-links a:hover {
+  text-decoration: underline;
+}
+
+.auth-msg {
+  color: crimson;
+  min-height: 1.2em;
+  margin-top: .5rem;
+}
+
+.hidden {
+  display: none !important;
+}
 
 /* Kanban */
+
 .kanban {
   display: flex;
   gap: 1.5rem;
@@ -47,7 +166,7 @@ button:hover { transform: scale(1.05); }
 .column {
   flex: 1;
   min-width: 260px;
-  background: #fff;
+  background: var(--card);
   border-radius: 12px;
   padding: 1rem;
   box-shadow: 0 4px 12px rgba(0,0,0,0.08);
@@ -58,9 +177,9 @@ button:hover { transform: scale(1.05); }
 
 .column h2 {
   text-align: center;
-  background: #000;
+  background: var(--black);
   color: #fff;
-  padding: 0.5rem;
+  padding: .5rem;
   border-radius: 8px;
   font-size: 1rem;
   margin-bottom: 1rem;
@@ -75,49 +194,91 @@ button:hover { transform: scale(1.05); }
 /* Card */
 .card {
   background: #fff;
-  border-left: 6px solid #FF6600;
+  border-left: 6px solid var(--orange);
   margin-bottom: 1rem;
-  padding: 0.8rem;
+  padding: .8rem;
   border-radius: 10px;
   cursor: grab;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  transition: all 0.2s;
+  transition: all .2s;
 }
-.card:hover { 
-  background: #fefefe; 
+
+/* Assegura que strong e small fiquem em linhas separadas */
+.card strong,
+.card small {
+  display: block;
+  margin-bottom: 4px;
+}
+
+.card:hover {
+  background: #fefefe;
   transform: scale(1.02);
 }
-.card strong { 
-  display: block;
+
+.card strong {
   font-size: 1.1rem;
-  margin-bottom: 4px;
   color: #000;
 }
 
+/* FAB (novo cliente) */
+.fab {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  background: linear-gradient(135deg, var(--orange), #ff8533);
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  padding: 14px 18px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(0,0,0,.18);
+}
+
 /* Modal */
+
 .modal {
   position: fixed;
-  top: 0; left: 0; width: 100%; height: 100%;
-  background: rgba(0,0,0,0.6);
-  display: flex; justify-content: center; align-items: center;
+  inset: 0;
+  background: rgba(0,0,0,.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.hidden { display: none; }
+
 .modal-content {
   background: #fff;
-  padding: 1.5rem;
+  width: 360px;
+  max-width: 92%;
+  padding: 1.2rem;
   border-radius: 12px;
-  width: 350px;
-  box-shadow: 0 6px 16px rgba(0,0,0,0.2);
-  animation: fadeIn 0.2s ease-in-out;
+  box-shadow: 0 6px 16px rgba(0,0,0,.2);
+  animation: fadeIn .2s ease-in-out;
 }
+
 @keyframes fadeIn {
-  from { transform: translateY(-20px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
+
+#closeModal {
+  float: right;
+  cursor: pointer;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
 .modal-content h3 {
   margin-top: 0;
-  color: #FF6600;
+  color: var(--orange);
 }
+
 .modal-content input {
   width: 100%;
   padding: 8px;
@@ -125,15 +286,51 @@ button:hover { transform: scale(1.05); }
   border-radius: 6px;
   border: 1px solid #ddd;
 }
+
 .modal-buttons {
   display: flex;
-  justify-content: space-between;
   gap: 10px;
 }
+
 .modal-buttons button {
   flex: 1;
-}
-#closeModal {
-  float: right; cursor: pointer; font-size: 1.2rem; font-weight: bold;
+  padding: 10px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.2s ease;
 }
 
+.modal-buttons button:hover {
+  filter: brightness(0.9);
+}
+
+/* Botão Salvar */
+.modal-buttons button[type="submit"] {
+  background: linear-gradient(135deg, var(--orange), #ff8533);
+  color: #fff;
+}
+
+/* Botão Excluir */
+.btn-danger {
+  background: #e11d48;
+  color: #fff;
+  border-radius: 8px;
+  font-weight: 600;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.btn-danger:hover {
+  filter: brightness(0.9);
+}
+
+@media (max-width: 768px) {
+  .column {
+    height: auto;
+    min-height: 70vh;
+  }
+}
